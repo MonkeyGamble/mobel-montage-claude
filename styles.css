@@ -369,6 +369,13 @@ a { color: inherit; text-decoration: none; }
   .hero-right { border-left: 0; border-top: 1px solid var(--rule); padding: 32px 0 0; }
   .hero-meta { grid-template-columns: repeat(2, 1fr); padding: 16px 0; }
   .hero { padding-top: 90px; }
+  .hero-drawing { min-height: 300px; }
+  .hero-img { max-width: 100%; }
+}
+@media (max-width: 640px) {
+  .hero-drawing { min-height: 220px; }
+  .hero-left .display { font-size: clamp(52px, 14vw, 80px); }
+  .hero-meta { grid-template-columns: 1fr 1fr; }
 }
 
 /* ─── Standards strip ──────────────────────────────────────── */
@@ -1086,6 +1093,16 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 880px) {
   .footer-cols { grid-template-columns: repeat(2, 1fr); gap: 32px; }
   .footer-mega .reg { display: none; }
+}
+@media (max-width: 540px) {
+  .footer-cols { grid-template-columns: 1fr; }
+  .nav-inner { padding: 14px var(--pad); }
+  .kontakt h2 { font-size: clamp(44px, 12vw, 80px); }
+  .feat-card .feat-meta { grid-template-columns: repeat(2, 1fr); }
+  .hero-spec { grid-template-columns: 1fr 1fr; }
+  .process-grid { grid-template-columns: 1fr; }
+  .process-step { border-right: 0; border-bottom: 1px solid var(--rule); padding: 24px 0; }
+  .process-step:last-child { border-bottom: 0; }
 }
 
 /* ─── FAB ─────────────────────────────────────────────────── */

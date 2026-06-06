@@ -146,7 +146,7 @@ function renderHero() {
   const right = el('div', 'hero-right fade-in d3');
   const drawing = el('div', 'hero-drawing');
   const img = el('img', 'hero-img');
-  img.src = '../assets/schrank-hero.png';
+  img.src = 'assets/schrank-hero.png';
   img.alt = d.imgAlt;
   drawing.append(img);
 
