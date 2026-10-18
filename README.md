@@ -30,12 +30,24 @@ Tests cover 320, 390, 768 and 1440px widths, both languages, local-storage fallb
 
 ## Structure
 
-- `src/App.jsx`: language persistence and page composition, scroll-aware navigation.
-- `src/components/Sections.jsx`: presentation sections, original class names and structure.
-- `src/components/Interactive.jsx`: portfolio, FAQ and contact form state.
-- `src/components/Icons.jsx`, `Drawings.jsx`: original SVG geometry as JSX.
+- `src/App.jsx`: page composition and translation selection.
+- `src/components/`: one named component per page section, plus navigation and shared UI.
+- `SectionRef`, `SectionHeading`, `FormField`, `ProjectCard`: shared markup without extra DOM wrappers.
+- `src/hooks/useLanguage.js`: language persistence and document language.
+- `src/hooks/useScrolled.js`: scroll threshold subscription with cleanup; only page chrome subscribes.
+- `src/config/contact.js`: contact URLs and displayed phone/email used by navigation and footer. Translated contact-card text remains in the dictionaries.
+- `src/components/Icons.jsx`, `Drawings.jsx`: SVG React components with named props; original geometry retained.
 - `src/translations.js`, `src/projects.js`: original content and data.
 - `src/styles.css`: unchanged source stylesheet.
 - `public/`: original image assets.
+
+## Code formatting
+
+```sh
+npm run format
+npm run format:check
+```
+
+Prettier formats JavaScript, JSX and configuration files. The original stylesheet is deliberately excluded to preserve its exact contents. Keep state in the section that owns it; language changes update props without remounting forms, filters or FAQ. Project categories are grouped once from static data and shared by the portfolio counts and filters.
 
 The contact form remains a local demo and does **not** send requests or files. Load-more, legal links and portfolio placeholders retain the original limitations. See `MIGRATION.md`. No backend, deployment configuration or external sending service has been added.
