@@ -1,6 +1,6 @@
-/* i18n — DE/UK translations, plain JS. window.TRANSLATIONS */
+/* Original DE/UK translations exported as module data. */
 
-window.TRANSLATIONS = {
+export const TRANSLATIONS = {
   /* ─────────────────────────── DEUTSCH ─────────────────────────── */
   DE: {
     nav: {
