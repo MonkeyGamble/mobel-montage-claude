@@ -1,3 +1,4 @@
+import { LANGUAGES } from '../config/languages.js';
 import { CONTACT } from '../config/contact.js';
 
 export function Navigation({ data: navigation, lang, setLang, scrolled }) {
@@ -19,8 +20,8 @@ export function Navigation({ data: navigation, lang, setLang, scrolled }) {
           <a className="nav-phone" href={CONTACT.phoneHref}>
             {CONTACT.phoneLabel}
           </a>
-          <div className="lang-switch" role="group" aria-label="Sprache / Мова">
-            {['DE', 'UK'].map((code) => (
+          <div className="lang-switch" role="group" aria-label="Sprache / Мова / Language">
+            {LANGUAGES.map((code) => (
               <button
                 type="button"
                 className={lang === code ? 'active' : ''}

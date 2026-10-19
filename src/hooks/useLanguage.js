@@ -1,17 +1,19 @@
 import { useEffect, useState } from 'react';
+import { LANGUAGES, HTML_LANGUAGES, LANGUAGE_STORAGE_KEY } from '../config/languages.js';
 
 export function useLanguage() {
   const [lang, setLang] = useState(() => {
     try {
-      return localStorage.getItem('mm-lang') === 'UK' ? 'UK' : 'DE';
+      const saved = localStorage.getItem(LANGUAGE_STORAGE_KEY);
+      return LANGUAGES.includes(saved) ? saved : 'DE';
     } catch {
       return 'DE';
     }
   });
   useEffect(() => {
-    document.documentElement.lang = lang === 'UK' ? 'uk' : 'de';
+    document.documentElement.lang = HTML_LANGUAGES[lang];
     try {
-      localStorage.setItem('mm-lang', lang);
+      localStorage.setItem(LANGUAGE_STORAGE_KEY, lang);
     } catch {
       /* Storage may be disabled. */
     }

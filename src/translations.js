@@ -1,10 +1,12 @@
+import { EN } from './en.js';
 /* Original DE/UK translations exported as module data. */
 
 export const TRANSLATIONS = {
+  EN,
   /* ─────────────────────────── DEUTSCH ─────────────────────────── */
   DE: {
     nav: {
-      sub: 'Bonn',
+      sub: 'NRW',
       links: [
         { href: '#leistungen', num: '01', label: 'Leistungen' },
         { href: '#archiv', num: '03', label: 'Archiv' },
@@ -15,7 +17,7 @@ export const TRANSLATIONS = {
     hero: {
       meta: [
         { k: 'Doc. №', v: 'MM-001 · 2026' },
-        { k: 'Region', v: 'BONN + 100 KM' },
+        { k: 'Region', v: 'NRW' },
         { k: 'Ihr Handwerker', v: 'KOSTIANTYN' },
         { k: 'Status', v: 'Termine in 12 h' },
       ],
@@ -262,7 +264,7 @@ export const TRANSLATIONS = {
   /* ─────────────────────────── УКРАЇНСЬКА ─────────────────────────── */
   UK: {
     nav: {
-      sub: 'Бонн',
+      sub: 'NRW',
       links: [
         { href: '#leistungen', num: '01', label: 'Послуги' },
         { href: '#archiv', num: '03', label: 'Архів' },
@@ -273,7 +275,7 @@ export const TRANSLATIONS = {
     hero: {
       meta: [
         { k: 'Док. №', v: 'MM-001 · 2026' },
-        { k: 'Регіон', v: 'БОНН + 100 КМ' },
+        { k: 'Регіон', v: 'NRW' },
         { k: 'Ваш майстер', v: 'КОСТЯНТИН' },
         { k: 'Статус', v: 'Запис за 12 год' },
       ],

@@ -1,3 +1,4 @@
+import { LANGUAGES } from '../config/languages.js';
 import { CONTACT } from '../config/contact.js';
 
 export function Footer({ data: footer }) {
@@ -60,7 +61,7 @@ export function Footer({ data: footer }) {
             >
               {footer.langLabel}
               <br />
-              DE · UK
+              {LANGUAGES.join(' · ')}
             </p>
           </div>
         </div>

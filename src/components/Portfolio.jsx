@@ -47,7 +47,7 @@ export function Portfolio({ data: portfolio }) {
         {shown.map((pr, i) => (
           <ProjectCard
             key={pr.id}
-            project={pr}
+            project={{ ...pr, ...portfolio.projectLabels?.[pr.id] }}
             labels={portfolio.card}
             categoryLabel={labelFor(pr.cat)}
             placeholderHeight={PH_HEIGHTS[i % PH_HEIGHTS.length]}

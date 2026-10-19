@@ -152,7 +152,7 @@ export function ProcessStep3Drawing({ w = 200, h = 80 }) {
   );
 }
 
-export function ProcessStep4Drawing({ w = 200, h = 80 }) {
+export function ProcessStep4Drawing({ w = 200, h = 80, label = 'FERTIG' }) {
   return (
     <svg viewBox="0 0 200 80" width={w} height={h} aria-hidden="true">
       <g fill="none" stroke={DS} strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
@@ -175,7 +175,7 @@ export function ProcessStep4Drawing({ w = 200, h = 80 }) {
           textAnchor="middle"
           fill={DD}
         >
-          FERTIG
+          {label}
         </text>
         <line x1="82" y1="40" x2="120" y2="40" strokeDasharray="2 3" strokeWidth="0.8" />
         <path d="M 116 36 L 120 40 L 116 44" strokeWidth="0.8" />

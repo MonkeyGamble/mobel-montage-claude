@@ -66,6 +66,19 @@ for (const language of ['DE', 'UK']) {
       });
       await tab.locator('.hero-img').evaluate((img) => img.decode());
     }
+    // Approved header copy change; keep the rest of the original visual baseline.
+    await expect(page.locator('.wordmark .sub')).toHaveText('NRW');
+    await original.locator('.wordmark .sub').evaluate((label) => {
+      label.textContent = 'NRW';
+    });
+    await original.evaluate(() => {
+      document.querySelector('.hero-meta > div:nth-child(2) span').textContent = 'NRW';
+      const button = document.createElement('button');
+      button.textContent = 'EN';
+      document.querySelector('.lang-switch').append(button);
+      const label = document.querySelector('.footer-col:last-child p');
+      label.lastChild.textContent = label.lastChild.textContent.replace('DE · UK', 'DE · UK · EN');
+    });
     const overflow = (tab) =>
       tab.evaluate(() => ({
         width: innerWidth,

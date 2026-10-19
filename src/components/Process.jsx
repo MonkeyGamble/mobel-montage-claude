@@ -39,7 +39,7 @@ export function Process({ data: process }) {
                 </div>
                 <p className="step-desc">{st.desc}</p>
                 <div className="diagram">
-                  <Drawing w={200} h={80} />
+                  <Drawing w={200} h={80} label={process.doneLabel} />
                 </div>
               </div>
             );
