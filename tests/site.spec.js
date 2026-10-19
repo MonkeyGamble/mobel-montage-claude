@@ -23,7 +23,7 @@ test('layout, graphics, translations, persistence and scroll controls', async ({
   expect((await page.locator('main').boundingBox()).width).toBeLessThanOrEqual(
     page.viewportSize().width,
   );
-  await page.getByRole('button', { name: 'UK', exact: true }).click();
+  await page.getByRole('button', { name: 'UA', exact: true }).click();
   await expect(page.locator('html')).toHaveAttribute('lang', 'uk');
   await expect(page.locator('.hero .sub')).toHaveText(TRANSLATIONS.UK.hero.sub);
   await page.reload();
@@ -64,7 +64,7 @@ test('archive filters and FAQ keyboard interaction survive language changes', as
   await expect(page.locator('.faq-item.open')).toHaveCount(0);
   await questions.nth(2).click();
   await page.locator('.pill[data-cat="PAX"]').click();
-  await page.getByRole('button', { name: 'UK', exact: true }).click();
+  await page.getByRole('button', { name: 'UA', exact: true }).click();
   await expect(page.locator('.arch-card')).toHaveCount(3);
   await expect(questions.nth(2)).toHaveAttribute('aria-expanded', 'true');
   await expect(questions.nth(2)).toContainText(TRANSLATIONS.UK.faq.items[2].q);
@@ -81,7 +81,7 @@ test('contact fields, local file selection, demo feedback and direct links', asy
     mimeType: 'application/pdf',
     buffer: Buffer.from('%PDF-1.4 test'),
   });
-  await page.getByRole('button', { name: 'UK', exact: true }).click();
+  await page.getByRole('button', { name: 'UA', exact: true }).click();
   await expect(page.locator('#contact-name')).toHaveValue('Test Kunde');
   expect(await page.locator('input[type=file]').evaluate((input) => input.files[0].name)).toBe(
     'test.pdf',
@@ -115,6 +115,6 @@ test('invalid or unavailable local storage falls back to DE', async ({ page }) =
     };
   });
   await page.reload();
-  await page.getByRole('button', { name: 'UK', exact: true }).click();
+  await page.getByRole('button', { name: 'UA', exact: true }).click();
   await expect(page.locator('html')).toHaveAttribute('lang', 'uk');
 });

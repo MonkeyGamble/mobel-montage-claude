@@ -38,7 +38,7 @@ Tests cover 320, 390, 768 and 1440px widths, both languages, local-storage fallb
 - `src/config/contact.js`: contact URLs and displayed phone/email used by navigation and footer. Translated contact-card text remains in the dictionaries.
 - `src/components/Icons.jsx`, `Drawings.jsx`: SVG React components with named props; original geometry retained.
 - `src/translations.js`, `src/projects.js`: original content and data.
-- `src/styles.css`: unchanged source stylesheet.
+- `src/styles.css`: site stylesheet; section spacing preserves the responsive container gutters.
 - `public/`: original image assets.
 
 ## Code formatting
@@ -48,6 +48,6 @@ npm run format
 npm run format:check
 ```
 
-Prettier formats JavaScript, JSX and configuration files. The original stylesheet is deliberately excluded to preserve its exact contents. Keep state in the section that owns it; language changes update props without remounting forms, filters or FAQ. Project categories are grouped once from static data and shared by the portfolio counts and filters.
+Prettier formats JavaScript, JSX and configuration files. The stylesheet is excluded from automatic formatting to keep CSS changes focused. Keep state in the section that owns it; language changes update props without remounting forms, filters or FAQ. Project categories are grouped once from static data and shared by the portfolio counts and filters.
 
 The contact form remains a local demo and does **not** send requests or files. Load-more, legal links and portfolio placeholders retain the original limitations. See `MIGRATION.md`. No backend, deployment configuration or external sending service has been added.

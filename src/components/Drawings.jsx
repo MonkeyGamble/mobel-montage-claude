@@ -1,57 +1,66 @@
-/* Original technical drawings rendered as JSX. */
-
-const DS = '#0E0D0B'; // stroke
-const DD = '#3B362F'; // dim labels
+/* Service icons share a technical line style and a consistent 80px canvas. */
+function ServiceDrawing({ w, h, children }) {
+  return (
+    <svg viewBox="0 0 80 80" width={w} height={h} aria-hidden="true" focusable="false">
+      <g
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        {children}
+      </g>
+    </svg>
+  );
+}
 
 export function CabinetDrawing({ w = 80, h = 80 }) {
   return (
-    <svg viewBox="0 0 80 80" width={w} height={h} aria-hidden="true">
-      <g fill="none" stroke={DS} strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="12" y="20" width="56" height="44" />
-        <line x1="12" y1="20" x2="20" y2="14" />
-        <line x1="68" y1="20" x2="76" y2="14" />
-        <line x1="20" y1="14" x2="76" y2="14" />
-        <line x1="40" y1="20" x2="40" y2="64" strokeDasharray="2 3" strokeWidth="0.8" />
-        <line x1="35" y1="40" x2="35" y2="48" strokeWidth="2" />
-        <line x1="45" y1="40" x2="45" y2="48" strokeWidth="2" />
-        <line x1="14" y1="36" x2="38" y2="36" strokeDasharray="1 2" strokeWidth="0.6" />
-        <line x1="42" y1="50" x2="66" y2="50" strokeDasharray="1 2" strokeWidth="0.6" />
-        <line x1="18" y1="64" x2="18" y2="70" />
-        <line x1="62" y1="64" x2="62" y2="70" />
-        <line x1="10" y1="72" x2="70" y2="72" strokeWidth="0.5" />
-      </g>
-    </svg>
+    <ServiceDrawing w={w} h={h}>
+      <path d="M16 18 25 11h41v51l-9 7H16Z" />
+      <path d="M16 18h41v51M57 18l9-7" />
+      <path d="M36.5 18v39M16 57h41" />
+      <path d="M30 34v9m13-9v9M32 63h9" strokeWidth="2.4" />
+      <path d="M21 69v4m31-4v4" />
+      <path d="M21 23h10m11 0h10" strokeOpacity="0.35" strokeWidth="1" />
+      <path d="M11 74h52" strokeOpacity="0.45" strokeWidth="1" />
+    </ServiceDrawing>
   );
 }
 
 export function ToolboxDrawing({ w = 80, h = 80 }) {
   return (
-    <svg viewBox="0 0 80 80" width={w} height={h} aria-hidden="true">
-      <g fill="none" stroke={DS} strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M 18 14 L 18 32 L 24 36 L 30 30 L 30 14 Q 24 18 24 22 Q 24 26 22 26 Q 18 26 18 22 Z" />
-        <line x1="24" y1="36" x2="50" y2="62" strokeWidth="2" />
-        <circle cx="56" cy="64" r="10" />
-        <path d="M 50 60 L 56 64 L 50 68" />
-      </g>
-    </svg>
+    <ServiceDrawing w={w} h={h}>
+      {/* Open-ended spanner, with a ring at the other end. */}
+      <path d="M20 12a13 13 0 0 0 13 20l25 25a7 7 0 1 1-10 10L23 42A13 13 0 0 1 10 29l9 5 8-8Z" />
+      <circle cx="53" cy="62" r="2.5" strokeWidth="1.4" />
+      {/* Screwdriver crossing behind the spanner. */}
+      <path d="m44 30 14-14a6 6 0 0 1 8 8L52 38Z" />
+      <path d="m49 29 11-11m-7 15 11-11" strokeWidth="1" strokeOpacity="0.5" />
+      <path d="m44 33-7 7m-5 5L20 57m-3-3-7 13 13-7-3-3Z" />
+      <path d="M10 74h60" strokeOpacity="0.45" strokeWidth="1" />
+    </ServiceDrawing>
   );
 }
 
-export function RecycleDrawing({ w = 80, h = 80 }) {
+export function DismantlingDrawing({ w = 80, h = 80 }) {
   return (
-    <svg viewBox="0 0 80 80" width={w} height={h} aria-hidden="true">
-      <g fill="none" stroke={DS} strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M 20 26 L 24 64 L 56 64 L 60 26 Z" />
-        <line x1="18" y1="26" x2="62" y2="26" strokeWidth="2" />
-        <line x1="32" y1="20" x2="48" y2="20" strokeWidth="2" />
-        <line x1="32" y1="32" x2="33" y2="58" strokeWidth="0.7" />
-        <line x1="40" y1="32" x2="40" y2="58" strokeWidth="0.7" />
-        <line x1="48" y1="32" x2="47" y2="58" strokeWidth="0.7" />
-        <line x1="14" y1="70" x2="66" y2="70" strokeWidth="0.5" />
-      </g>
-    </svg>
+    <ServiceDrawing w={w} h={h}>
+      {/* Separated furniture panels, without suggesting waste removal. */}
+      <path d="m27 17 5-5h23l-5 5Zm0 0v4h23v-4" />
+      <path d="m13 30 5-4v32l-5 4Zm0 0v32m5-36 4 3v30l-4-1" />
+      <path d="m59 29 5-4 4 3v31l-5 4-4-3Zm0 0 4 3 5-4m-5 4v31" />
+      <path d="m27 63 5-5h23l-5 5Zm0 0v4h23v-4" />
+      <path d="M28 31h23v20H28Z" strokeDasharray="3 4" strokeOpacity="0.45" strokeWidth="1" />
+      <path d="M40 32v-6m-3 3 3-3 3 3M40 47v7m-3-3 3 3 3-3" strokeWidth="1.4" />
+      <path d="M10 74h60" strokeOpacity="0.45" strokeWidth="1" />
+    </ServiceDrawing>
   );
 }
+
+const DS = '#0E0D0B';
+const DD = '#3B362F';
 
 export function ProcessStep1Drawing({ w = 200, h = 80 }) {
   return (

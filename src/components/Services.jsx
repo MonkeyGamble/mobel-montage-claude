@@ -1,13 +1,32 @@
 import { SectionHeading } from './SectionHeading.jsx';
 import { SectionRef } from './SectionRef.jsx';
-import { CabinetDrawing, ToolboxDrawing, RecycleDrawing } from './Drawings.jsx';
-const serviceDrawings = [CabinetDrawing, ToolboxDrawing, RecycleDrawing];
+import { CabinetDrawing, ToolboxDrawing, DismantlingDrawing } from './Drawings.jsx';
+const serviceDrawings = [CabinetDrawing, ToolboxDrawing, DismantlingDrawing];
 
 export function Services({ data: services }) {
   return (
     <section className="section wrap" id="leistungen">
       <SectionRef data={services.ref} />
-      <SectionHeading eyebrow={services.eyebrow} description={services.desc}>
+      <SectionHeading
+        eyebrow={services.eyebrow}
+        description={
+          <>
+            {services.descLead && (
+              <>
+                <strong>{services.descLead}</strong>
+                <br />
+              </>
+            )}
+            <span className="services-summary">{services.desc}</span>
+            {services.descClosing && (
+              <>
+                <br />
+                <strong>{services.descClosing}</strong>
+              </>
+            )}
+          </>
+        }
+      >
         <h2 style={{ color: 'rgb(255,140,0)' }}>
           <span style={{ color: '#0E0D0B' }}>{services.headA}</span>
           <br />
@@ -24,7 +43,12 @@ export function Services({ data: services }) {
               <p className="desc">{it.desc}</p>
               <ul className="includes">
                 {it.includes.map((inc) => (
-                  <li key={inc}>{inc}</li>
+                  <li
+                    key={inc}
+                    className={inc.startsWith('OTTO ') ? 'brand-with-description' : undefined}
+                  >
+                    {inc}
+                  </li>
                 ))}
               </ul>
               <div className="drawing">

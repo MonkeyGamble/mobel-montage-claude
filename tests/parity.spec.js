@@ -73,11 +73,126 @@ for (const language of ['DE', 'UK']) {
     });
     await original.evaluate(() => {
       document.querySelector('.hero-meta > div:nth-child(2) span').textContent = 'NRW';
+      const rail = document.querySelector('.hero-rail .v');
+      rail.textContent = rail.textContent.replace(/Bonn|Бонн/, 'NRW');
+      const specLabel = document.querySelector('.hero-spec > div:nth-child(3)').firstChild;
+      specLabel.textContent = specLabel.textContent.replace('Innenausstattung', 'Inneneinrichtung');
+      if (document.documentElement.lang === 'de') {
+        document.querySelector('.hero-spec > div:nth-child(3) strong').textContent = 'ab 35 €';
+      }
+      document.querySelector('.standard:nth-child(2) strong').textContent = 'Nordrhein-Westfalen';
+      document.querySelector('.lang-switch button:nth-child(2)').textContent = 'UA';
+      const brand = document.querySelector(
+        '#leistungen .catalog-row:nth-child(2) .includes li:last-child',
+      );
+      brand.textContent =
+        document.documentElement.lang === 'de' ? 'OTTO und weitere' : 'OTTO та інші';
+      brand.style.textTransform = 'none';
       const button = document.createElement('button');
       button.textContent = 'EN';
       document.querySelector('.lang-switch').append(button);
       const label = document.querySelector('.footer-col:last-child p');
       label.lastChild.textContent = label.lastChild.textContent.replace('DE · UK', 'DE · UK · EN');
+    });
+    // Approved gutter fix: the original shorthand erased container side padding.
+    await original.addStyleTag({
+      content: '.section.wrap, .testimonial.wrap { padding-inline: var(--pad); }',
+    });
+    // Approved copy change: packaging is folded neatly, not removed.
+    await original.evaluate(
+      (replacements) => {
+        const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+        while (walker.nextNode()) {
+          for (const [before, after] of replacements) {
+            walker.currentNode.textContent = walker.currentNode.textContent.replaceAll(
+              before,
+              after,
+            );
+          }
+        }
+      },
+      [
+        ['Verpackung entsorgt', 'Verpackung ordentlich zusammengelegt'],
+        ['Verpackung mitgenommen.', 'Verpackung ordentlich zusammengelegt.'],
+        ['Verpackung wurde mitgenommen', 'Verpackung wurde ordentlich zusammengelegt'],
+        ['упаковку винесено', 'упаковку акуратно складено'],
+        ['Упаковку забрано.', 'Упаковку акуратно складено.'],
+        ['Упаковку забрали', 'Упаковку акуратно склали'],
+        ['packaging removed', 'packaging neatly folded'],
+        ['Packaging taken away.', 'Packaging neatly folded.'],
+        ['Packaging was taken away', 'Packaging was neatly folded'],
+      ],
+    );
+    // Approved biography: updated region and one sentence per line.
+    await original.evaluate(
+      (biographies) => {
+        const biography = document.querySelector('.philosophy-bio');
+        biography.textContent = biographies[document.documentElement.lang];
+        biography.style.whiteSpace = 'pre-line';
+      },
+      {
+        de: 'Seit 2025 in Nordrhein-Westfalen.\nÜber 300 abgeschlossene Montagen.\nVier Sprachen, ein Standard.',
+        uk: 'У Північному Рейні-Вестфалії з 2025 року.\nПонад 300 завершених збірок.\nЧотири мови, один стандарт.',
+        en: 'Working in North Rhine-Westphalia since 2025.\nOver 300 completed assemblies.\nFour languages, one standard.',
+      },
+    );
+    // Approved Ukrainian services copy and emphasis.
+    if (language === 'UK') {
+      await original.evaluate(() => {
+        const lead = document.createElement('strong');
+        lead.textContent = 'Три напрями, один стандарт.';
+        const summary = document.createElement('span');
+        summary.className = 'services-summary';
+        summary.textContent = 'Від окремого столика до повністю вбудованої кухні.';
+        const closing = document.createElement('strong');
+        closing.textContent = 'Чисто. Вчасно. З письмовою гарантією.';
+        document
+          .querySelector('#leistungen .section-head > .desc')
+          .replaceChildren(
+            lead,
+            document.createElement('br'),
+            summary,
+            document.createElement('br'),
+            closing,
+          );
+      });
+      await expect(page.locator('#leistungen .section-head > .desc strong')).toHaveCount(2);
+      await expect(page.locator('#leistungen .section-head > .desc br')).toHaveCount(2);
+    }
+    await original.addStyleTag({
+      content:
+        '\n/* Give the Ukrainian service summary its natural width on desktop. */\n@media (min-width: 1280px) {\n  html[lang="uk"] #leistungen .section-head {\n    grid-template-columns: minmax(0, 1fr) max-content;\n  }\n  html[lang="uk"] #leistungen .section-head > .desc { max-width: none; }\n  html[lang="uk"] #leistungen .services-summary { white-space: nowrap; }\n}\n',
+    });
+    // German services use the same three-line emphasis as Ukrainian.
+    if (language === 'DE') {
+      await original.evaluate(() => {
+        const lead = document.createElement('strong');
+        lead.textContent = 'Drei Disziplinen, ein Standard.';
+        const summary = document.createElement('span');
+        summary.className = 'services-summary';
+        summary.textContent = 'Vom einzelnen Beistelltisch bis zur kompletten Einbauküche.';
+        const closing = document.createElement('strong');
+        closing.textContent = 'Sauber. Pünktlich. Schriftlich garantiert.';
+        document
+          .querySelector('#leistungen .section-head > .desc')
+          .replaceChildren(
+            lead,
+            document.createElement('br'),
+            summary,
+            document.createElement('br'),
+            closing,
+          );
+      });
+      await expect(page.locator('#leistungen .section-head > .desc strong')).toHaveCount(2);
+      await expect(page.locator('#leistungen .section-head > .desc br')).toHaveCount(2);
+    }
+    await original.addStyleTag({
+      content:
+        '\n@media (min-width: 1280px) {\n  html[lang="de"] #leistungen .section-head { grid-template-columns: minmax(0, 1fr) max-content; }\n  html[lang="de"] #leistungen .section-head > .desc { max-width: none; }\n  html[lang="de"] #leistungen .services-summary { white-space: nowrap; }\n}\n',
+    });
+    await original.addStyleTag({
+      content:
+        '.philosophy-pull { color: var(--ink); } .philosophy-pull em { color: rgb(255, 140, 0); }',
     });
     const overflow = (tab) =>
       tab.evaluate(() => ({
@@ -122,7 +237,7 @@ for (const language of ['DE', 'UK']) {
         ).toBeLessThanOrEqual(2);
     }
     const svgGeometry = (tab) =>
-      tab.locator('main svg').evaluateAll((svgs) =>
+      tab.locator('.process svg').evaluateAll((svgs) =>
         svgs.map((svg) =>
           [...svg.querySelectorAll('*')].map((node) => ({
             tag: node.tagName,

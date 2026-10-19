@@ -27,9 +27,9 @@ export function Navigation({ data: navigation, lang, setLang, scrolled }) {
                 className={lang === code ? 'active' : ''}
                 aria-pressed={lang === code}
                 onClick={() => setLang(code)}
-                key={code}
+                key={code === 'UK' ? 'UA' : code}
               >
-                {code}
+                {code === 'UK' ? 'UA' : code}
               </button>
             ))}
           </div>

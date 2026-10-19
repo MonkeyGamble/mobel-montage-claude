@@ -21,7 +21,7 @@ export const TRANSLATIONS = {
         { k: 'Ihr Handwerker', v: 'KOSTIANTYN' },
         { k: 'Status', v: 'Termine in 12 h' },
       ],
-      railL1: 'Möbel Montage / Bonn',
+      railL1: 'Möbel Montage / NRW',
       railL2: 'Maße in cm',
       tagline: ['Aufbau', 'Abbau', 'Reparaturen'],
       title1: 'MÖBEL',
@@ -32,7 +32,7 @@ export const TRANSLATIONS = {
       spec: [
         { k: 'Modell', v: 'PAX 200 / 236' },
         { k: 'Dauer', v: '≈ 1 STD.' },
-        { k: 'Innenausstattung', v: '+ 35 €' },
+        { k: 'Inneneinrichtung', v: 'ab 35 €' },
         { k: 'Festpreis ab', v: '40 €' },
       ],
       railR1: 'Doc. MM-001 / 2026',
@@ -40,7 +40,7 @@ export const TRANSLATIONS = {
     },
     standards: [
       { k: '01', label: 'Handwerker', v: 'Kostiantyn' },
-      { k: '02', label: 'Radius', v: '100 km / Bonn' },
+      { k: '02', label: 'Radius', v: 'Nordrhein-Westfalen' },
       { k: '03', label: 'Bewertung', v: '5,0 ★ · Google' },
       { k: '04', label: 'Garantie', v: '24 Monate' },
       { k: '05', label: 'Festpreis', v: 'Schriftlich' },
@@ -58,7 +58,7 @@ export const TRANSLATIONS = {
         },
         {
           key: '§ 02 — Sorgfalt',
-          val: 'Wohnung wird sauber hinterlassen: Verpackung entsorgt, Späne aufgesaugt, Werkzeug aus dem Weg. Ihr Zuhause bleibt Ihr Zuhause — vor, während und nach der Montage.',
+          val: 'Wohnung wird sauber hinterlassen: Verpackung ordentlich zusammengelegt, Späne aufgesaugt, Werkzeug aus dem Weg. Ihr Zuhause bleibt Ihr Zuhause — vor, während und nach der Montage.',
         },
         {
           key: '§ 03 — Transparenz',
@@ -73,14 +73,16 @@ export const TRANSLATIONS = {
       author: 'Kostiantyn',
       authorRole: 'MÖBELMONTEUR',
       authorBio:
-        'Seit 2025 im Raum Bonn. Über 300 abgeschlossene Montagen. Vier Sprachen, ein Standard.',
+        'Seit 2025 in Nordrhein-Westfalen.\nÜber 300 abgeschlossene Montagen.\nVier Sprachen, ein Standard.',
     },
     services: {
       ref: { id: '01 / 07', title: 'Leistungsverzeichnis', meta: '03 Positionen · Stand 2026' },
       eyebrow: '§ Was im Festpreis enthalten ist',
       headA: 'Was ich für Sie',
       headEm: 'aufbaue',
-      desc: 'Drei Disziplinen, ein Standard. Vom einzelnen Beistelltisch bis zur kompletten Einbauküche — sauber, pünktlich, schriftlich garantiert.',
+      descLead: 'Drei Disziplinen, ein Standard.',
+      desc: 'Vom einzelnen Beistelltisch bis zur kompletten Einbauküche.',
+      descClosing: 'Sauber. Pünktlich. Schriftlich garantiert.',
       items: [
         {
           code: '01.01',
@@ -92,7 +94,7 @@ export const TRANSLATIONS = {
           code: '01.02',
           name: 'Andere Marken',
           desc: 'Bauanleitung optional — Erfahrung mit jedem Möbelhaus. Auch ohne Original-Skizze sauber zusammengebaut.',
-          includes: ['Höffner', 'XXXLutz', 'Roller', 'Online-Möbel'],
+          includes: ['Höffner', 'XXXLutz', 'Roller', 'OTTO und weitere'],
         },
         {
           code: '01.03',
@@ -141,7 +143,7 @@ export const TRANSLATIONS = {
         {
           num: '04',
           label: 'Fertig',
-          desc: 'Alles ausgerichtet, verschraubt, getestet. Verpackung mitgenommen.',
+          desc: 'Alles ausgerichtet, verschraubt, getestet. Verpackung ordentlich zusammengelegt.',
         },
       ],
     },
@@ -174,7 +176,8 @@ export const TRANSLATIONS = {
       mark: 'Stimme · M. Schneider · Beuel · Google ★★★★★',
       quoteA: 'Pünktlich, ordentlich, fairer Preis. Der PAX-Schrank steht',
       quoteEm: ' millimetergenau',
-      quoteB: '. Verpackung wurde mitgenommen, die Wohnung sauberer als vorher. Klare Empfehlung.',
+      quoteB:
+        '. Verpackung wurde ordentlich zusammengelegt, die Wohnung sauberer als vorher. Klare Empfehlung.',
       name: 'M. Schneider',
       loc: 'Bonn-Beuel',
       date: 'September 2025',
@@ -279,7 +282,7 @@ export const TRANSLATIONS = {
         { k: 'Ваш майстер', v: 'КОСТЯНТИН' },
         { k: 'Статус', v: 'Запис за 12 год' },
       ],
-      railL1: 'Збірка меблів / Бонн',
+      railL1: 'Збірка меблів / NRW',
       railL2: 'Розміри в см',
       tagline: ['Збірка', 'Розбірка', 'Ремонт'],
       title1: 'ЗБІРКА',
@@ -298,7 +301,7 @@ export const TRANSLATIONS = {
     },
     standards: [
       { k: '01', label: 'Майстер', v: 'Костянтин' },
-      { k: '02', label: 'Радіус', v: '100 км / Бонн' },
+      { k: '02', label: 'Радіус', v: 'Nordrhein-Westfalen' },
       { k: '03', label: 'Оцінка', v: '5,0 ★ · Google' },
       { k: '04', label: 'Гарантія', v: '24 місяці' },
       { k: '05', label: 'Ціна', v: 'Письмово' },
@@ -320,7 +323,7 @@ export const TRANSLATIONS = {
         },
         {
           key: '§ 02 — Ретельність',
-          val: 'Помешкання залишаю прибраним: упаковку винесено, стружку зібрано пилососом, інструмент прибрано. Ваш дім лишається вашим домом — до, під час і після збірки.',
+          val: 'Помешкання залишаю прибраним: упаковку акуратно складено, стружку зібрано пилососом, інструмент прибрано. Ваш дім лишається вашим домом — до, під час і після збірки.',
         },
         {
           key: '§ 03 — Прозорість',
@@ -335,14 +338,16 @@ export const TRANSLATIONS = {
       author: 'Костянтин',
       authorRole: 'МАЙСТЕР ЗІ ЗБІРКИ МЕБЛІВ',
       authorBio:
-        'У регіоні Бонна з 2025 року. Понад 300 завершених збірок. Чотири мови, один стандарт.',
+        'У Північному Рейні-Вестфалії з 2025 року.\nПонад 300 завершених збірок.\nЧотири мови, один стандарт.',
     },
     services: {
       ref: { id: '01 / 07', title: 'Перелік послуг', meta: '03 позиції · 2026' },
       eyebrow: '§ Що входить у фіксовану ціну',
       headA: 'Що я для вас',
       headEm: 'збираю',
-      desc: 'Три напрями, один стандарт. Від окремого столика до повністю вбудованої кухні — чисто, вчасно, з письмовою гарантією.',
+      descLead: 'Три напрями, один стандарт.',
+      desc: 'Від окремого столика до повністю вбудованої кухні.',
+      descClosing: 'Чисто. Вчасно. З письмовою гарантією.',
       items: [
         {
           code: '01.01',
@@ -354,7 +359,7 @@ export const TRANSLATIONS = {
           code: '01.02',
           name: 'Інші бренди',
           desc: 'Інструкція за бажанням — є досвід з будь-яким меблевим домом. Збираю акуратно навіть без оригінального ескізу.',
-          includes: ['Höffner', 'XXXLutz', 'Roller', 'Онлайн-меблі'],
+          includes: ['Höffner', 'XXXLutz', 'Roller', 'OTTO та інші'],
         },
         {
           code: '01.03',
@@ -403,7 +408,7 @@ export const TRANSLATIONS = {
         {
           num: '04',
           label: 'Готово',
-          desc: 'Усе вирівняно, скручено, перевірено. Упаковку забрано.',
+          desc: 'Усе вирівняно, скручено, перевірено. Упаковку акуратно складено.',
         },
       ],
     },
@@ -436,7 +441,7 @@ export const TRANSLATIONS = {
       mark: 'Відгук · M. Schneider · Бойєль · Google ★★★★★',
       quoteA: 'Вчасно, акуратно, чесна ціна. Шафа PAX стоїть',
       quoteEm: ' міліметр у міліметр',
-      quoteB: '. Упаковку забрали, у квартирі чистіше, ніж було. Однозначно рекомендую.',
+      quoteB: '. Упаковку акуратно склали, у квартирі чистіше, ніж було. Однозначно рекомендую.',
       name: 'M. Schneider',
       loc: 'Бонн-Бойєль',
       date: 'Вересень 2025',

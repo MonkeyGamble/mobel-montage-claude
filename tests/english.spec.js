@@ -33,7 +33,7 @@ test('English content, persistence, filters, FAQ and preserved form state', asyn
     ['UK', 'uk'],
     ['DE', 'de'],
   ]) {
-    await page.getByRole('button', { name: code, exact: true }).click();
+    await page.getByRole('button', { name: code === 'UK' ? 'UA' : code, exact: true }).click();
     await expect(page.locator('html')).toHaveAttribute('lang', language);
   }
   expect(errors).toEqual([]);

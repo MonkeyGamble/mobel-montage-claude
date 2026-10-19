@@ -15,7 +15,7 @@ export const EN = {
       { k: 'Your craftsman', v: 'KOSTIANTYN' },
       { k: 'Status', v: 'Appointments within 12 h' },
     ],
-    railL1: 'Möbel Montage / Bonn',
+    railL1: 'Möbel Montage / NRW',
     railL2: 'Dimensions in cm',
     tagline: ['Assembly', 'Disassembly', 'Repairs'],
     title1: 'MÖBEL',
@@ -34,7 +34,7 @@ export const EN = {
   },
   standards: [
     { k: '01', label: 'Craftsman', v: 'Kostiantyn' },
-    { k: '02', label: 'Radius', v: '100 km / Bonn' },
+    { k: '02', label: 'Radius', v: 'Nordrhein-Westfalen' },
     { k: '03', label: 'Rating', v: '5.0 ★ · Google' },
     { k: '04', label: 'Warranty', v: '24 months' },
     { k: '05', label: 'Fixed price', v: 'In writing' },
@@ -52,7 +52,7 @@ export const EN = {
       },
       {
         key: '§ 02 — Care',
-        val: 'Your home is left clean: packaging removed, shavings vacuumed up, tools out of the way. Your home remains your home — before, during and after assembly.',
+        val: 'Your home is left clean: packaging neatly folded, shavings vacuumed up, tools out of the way. Your home remains your home — before, during and after assembly.',
       },
       {
         key: '§ 03 — Transparency',
@@ -67,14 +67,16 @@ export const EN = {
     author: 'Kostiantyn',
     authorRole: 'FURNITURE ASSEMBLER',
     authorBio:
-      'Working in the Bonn area since 2025. Over 300 completed assemblies. Four languages, one standard.',
+      'Working in North Rhine-Westphalia since 2025.\nOver 300 completed assemblies.\nFour languages, one standard.',
   },
   services: {
     ref: { id: '01 / 07', title: 'Services', meta: '03 items · Updated 2026' },
     eyebrow: '§ What the fixed price includes',
     headA: 'What I can',
     headEm: 'build for you',
-    desc: 'Three disciplines, one standard. From a single side table to a complete fitted kitchen — clean, on time and guaranteed in writing.',
+    descLead: 'Three disciplines, one standard.',
+    desc: 'From a single side table to a complete fitted kitchen.',
+    descClosing: 'Clean. On time. Guaranteed in writing.',
     items: [
       {
         code: '01.01',
@@ -86,7 +88,7 @@ export const EN = {
         code: '01.02',
         name: 'Other brands',
         desc: 'Instructions optional — experience with furniture from every retailer. Carefully assembled even without the original plans.',
-        includes: ['Höffner', 'XXXLutz', 'Roller', 'Online furniture'],
+        includes: ['Höffner', 'XXXLutz', 'Roller', 'OTTO and others'],
       },
       {
         code: '01.03',
@@ -142,7 +144,7 @@ export const EN = {
       {
         num: '04',
         label: 'Done',
-        desc: 'Everything aligned, secured and tested. Packaging taken away.',
+        desc: 'Everything aligned, secured and tested. Packaging neatly folded.',
       },
     ],
   },
@@ -175,7 +177,8 @@ export const EN = {
     mark: 'Review · M. Schneider · Beuel · Google ★★★★★',
     quoteA: 'On time, tidy, fairly priced. The PAX wardrobe is aligned',
     quoteEm: ' to the millimetre',
-    quoteB: '. Packaging was taken away and the flat was cleaner than before. Highly recommended.',
+    quoteB:
+      '. Packaging was neatly folded and the flat was cleaner than before. Highly recommended.',
     name: 'M. Schneider',
     loc: 'Bonn-Beuel',
     date: 'September 2025',
