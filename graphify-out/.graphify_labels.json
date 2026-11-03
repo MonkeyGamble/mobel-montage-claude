@@ -1,1 +1,17 @@
-{"0": "Cookies, Legal & Footer", "1": "App Shell & Sections", "2": "Entry Page & Migration Notes", "3": "Build Tooling (package.json)", "4": "Translations & Tests", "5": "Wardrobe Assembly Animation", "6": "Line Drawings", "7": "Hero, Contact & Icons", "8": "Navigation & Page Chrome", "9": "Portfolio Projects", "10": "Hero Image (public/)", "11": "Hero Image (green-screen)", "12": "Hero Image (assets/)", "13": "Prettier Config", "14": "Storage Write A", "15": "Storage Read", "16": "Storage Write B"}
+{
+  "0": "Cookies, Legal & Footer",
+  "1": "App Shell & Sections",
+  "2": "Entry Page & Migration Notes",
+  "3": "Build Tooling (package.json)",
+  "4": "Translations & Tests",
+  "5": "Wardrobe Assembly Animation",
+  "7": "Hero, Contact & Icons",
+  "9": "Portfolio Projects",
+  "10": "Hero Image (public/)",
+  "11": "Hero Image (green-screen)",
+  "12": "Hero Image (assets/)",
+  "13": "Prettier Config",
+  "14": "Storage Write A",
+  "15": "Storage Read",
+  "16": "Storage Write B"
+}
