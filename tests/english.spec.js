@@ -12,7 +12,7 @@ test('English content, persistence, filters, FAQ and preserved form state', asyn
   await expect(page.locator('.hero .sub')).toHaveText(TRANSLATIONS.EN.hero.sub);
   await expect(page.locator('.wordmark .sub')).toHaveText('NRW');
   await expect(page.locator('#leistungen')).toContainText('Other brands');
-  await expect(page.locator('#referenzen')).toContainText('Complete new-home furnishing');
+  await expect(page.locator('#referenzen')).toHaveCount(0);
   await expect(page.locator('.footer')).toContainText('DE · UK · EN');
   await expect(page.locator('#ablauf svg text').last()).toHaveText('DONE');
   await page.locator('.pill[data-cat="Küche"]').click();

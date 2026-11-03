@@ -7,4 +7,4 @@ export const CONTACT = {
 };
 
 // Order matches the contact cards in both translation dictionaries.
-export const CONTACT_CARD_LINKS = [CONTACT.whatsappHref, CONTACT.phoneHref, CONTACT.emailHref];
+export const CONTACT_CARD_LINKS = [CONTACT.whatsappHref, CONTACT.emailHref];

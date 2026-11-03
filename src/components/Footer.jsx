@@ -1,7 +1,9 @@
+import { CookieSettingsButton } from './CookieBanner.jsx';
+import { LEGAL_IDS } from '../data/legal.js';
 import { LANGUAGES } from '../config/languages.js';
 import { CONTACT } from '../config/contact.js';
 
-export function Footer({ data: footer }) {
+export function Footer({ data: footer, lang }) {
   return (
     <footer className="footer">
       <div className="wrap">
@@ -12,7 +14,15 @@ export function Footer({ data: footer }) {
               <div className="name">{footer.name}</div>
               <div className="role">{footer.role}</div>
             </div>
-            <p style={{ color: 'var(--ink-soft)', fontSize: 13, lineHeight: 1.6, maxWidth: 280 }}>
+            <p
+              style={{
+                color: 'var(--ink-soft)',
+                fontSize: 13,
+                lineHeight: 1.6,
+                maxWidth: 280,
+                whiteSpace: 'pre-line',
+              }}
+            >
               {footer.c1Bio}
             </p>
           </div>
@@ -44,8 +54,9 @@ export function Footer({ data: footer }) {
           </div>
           <div className="footer-col">
             <h4>{footer.c4Head}</h4>
-            {footer.legal.map((l) => (
-              <a href="#" key={l}>
+            <CookieSettingsButton lang={lang} />
+            {footer.legal.map((l, index) => (
+              <a href={`#/${LEGAL_IDS[index]}`} key={l}>
                 {l}
               </a>
             ))}
@@ -65,14 +76,6 @@ export function Footer({ data: footer }) {
             </p>
           </div>
         </div>
-      </div>
-      <div className="footer-mega" aria-hidden="true">
-        <span
-          style={{ fontSize: 'clamp(56px,14vw,200px)', lineHeight: 1, letterSpacing: '-0.03em' }}
-        >
-          MÖBEL&nbsp;MONTAGE
-        </span>
-        <span className="reg">№ MM-001 / 2026</span>
       </div>
       <div className="footer-bottom">
         <div className="wrap-row">

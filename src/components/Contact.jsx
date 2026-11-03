@@ -1,14 +1,16 @@
+import { CookieSettingsButton } from './CookieBanner.jsx';
 import { FormField } from './FormField.jsx';
 import { CONTACT_CARD_LINKS } from '../config/contact.js';
 import { SectionRef } from './SectionRef.jsx';
 import { useState } from 'react';
 import { UploadIcon, ArrowRightIcon } from './Icons.jsx';
 
-export function Contact({ data: contact }) {
+export function Contact({ data: contact, lang, cookiesAccepted }) {
   const [submitted, setSubmitted] = useState(false);
   // Preserve the original local-only feedback; no backend exists in this project.
   function handleSubmit(event) {
     event.preventDefault();
+    if (!cookiesAccepted) return;
     setSubmitted(true);
   }
   return (
@@ -23,7 +25,14 @@ export function Contact({ data: contact }) {
         </h2>
         <p className="sub">{contact.sub}</p>
       </div>
-      <form className="form-grid" id="contact-form" noValidate onSubmit={handleSubmit}>
+      {!cookiesAccepted && (
+        <div className="form-cookie-notice" role="status">
+          <p>{{ DE: 'Bitte klicken Sie im Cookie-Banner auf „Alle akzeptieren“, um das Anfrageformular auszufüllen.', UK: 'Щоб заповнити форму замовлення, натисніть «Прийняти всі» у cookie-банері.', EN: 'Please click “Accept all” in the cookie banner to fill in the order form.' }[lang]}</p>
+          <CookieSettingsButton lang={lang} />
+        </div>
+      )}
+      <form id="contact-form" noValidate onSubmit={handleSubmit}>
+        <fieldset className="form-grid order-fields" disabled={!cookiesAccepted} aria-label={contact.submit}>
         <FormField id="contact-name" label={contact.f1Label} required>
           <input
             id="contact-name"
@@ -74,6 +83,7 @@ export function Contact({ data: contact }) {
             </span>
           </button>
         </div>
+        </fieldset>
       </form>
       <div className="contact-direct">
         {CONTACT_CARD_LINKS.map((href, i) => (
@@ -81,7 +91,9 @@ export function Contact({ data: contact }) {
             <span className="label">{contact.cards[i].label}</span>
             <span
               className="value"
-              style={i === 2 ? { fontSize: 'clamp(16px,1.8vw,22px)' } : undefined}
+              style={
+                href.startsWith('mailto:') ? { fontSize: 'clamp(16px,1.8vw,22px)' } : undefined
+              }
             >
               {contact.cards[i].value}
             </span>

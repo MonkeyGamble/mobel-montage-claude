@@ -101,99 +101,134 @@ for (const language of ['DE', 'UK']) {
     // Approved copy change: packaging is folded neatly, not removed.
     await original.evaluate(
       (replacements) => {
-        const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+        const walker = document.createTreeWalker(
+          document.querySelector('#faq'),
+          NodeFilter.SHOW_TEXT,
+        );
         while (walker.nextNode()) {
-          for (const [before, after] of replacements) {
-            walker.currentNode.textContent = walker.currentNode.textContent.replaceAll(
-              before,
-              after,
-            );
-          }
+          for (const [before, after] of replacements)
+            walker.currentNode.textContent = walker.currentNode.textContent.replace(before, after);
         }
       },
       [
-        ['Verpackung entsorgt', 'Verpackung ordentlich zusammengelegt'],
-        ['Verpackung mitgenommen.', 'Verpackung ordentlich zusammengelegt.'],
-        ['Verpackung wurde mitgenommen', 'Verpackung wurde ordentlich zusammengelegt'],
-        ['упаковку винесено', 'упаковку акуратно складено'],
-        ['Упаковку забрано.', 'Упаковку акуратно складено.'],
-        ['Упаковку забрали', 'Упаковку акуратно склали'],
-        ['packaging removed', 'packaging neatly folded'],
-        ['Packaging taken away.', 'Packaging neatly folded.'],
-        ['Packaging was taken away', 'Packaging was neatly folded'],
+        [
+          '100 km um Bonn. Das umfasst Köln, Bad Godesberg, Siegburg, Hennef, Königswinter, Bornheim, Troisdorf und Sankt Augustin. Bei größeren Aufträgen auch darüber hinaus — fragen Sie einfach an.',
+          'Ich arbeite in ganz Nordrhein-Westfalen. Bei größeren Aufträgen auch darüber hinaus — fragen Sie einfach an.',
+        ],
+        [
+          '100 км навколо Бонна. Це Кельн, Бад-Ґодесберґ, Зіґбурґ, Геннеф, Кенігсвінтер, Борнгайм, Тройсдорф і Санкт-Авґустін. За більших замовлень — і далі, просто запитайте.',
+          'Працюю по всій Північній Рейн-Вестфалії. За більших замовлень — і далі, просто запитайте.',
+        ],
+        [
+          'Within 100 km of Bonn, including Köln, Bad Godesberg, Siegburg, Hennef, Königswinter, Bornheim, Troisdorf and Sankt Augustin. For larger jobs, I also travel further — just ask.',
+          'I work throughout North Rhine-Westphalia. For larger jobs, I also travel further — just ask.',
+        ],
       ],
     );
-    // Approved biography: updated region and one sentence per line.
+    await original.evaluate(() =>
+      document.querySelector('.contact-direct a[href^="tel:"]').remove(),
+    );
+    await original.addStyleTag({
+      content:
+        '.contact-direct { grid-template-columns: repeat(2, 1fr); } @media (max-width: 760px) { .contact-direct { grid-template-columns: 1fr; } }',
+    });
+    await original.locator('.footer').evaluate((element) => {
+      const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
+      while (walker.nextNode()) {
+        walker.currentNode.textContent = walker.currentNode.textContent
+          .replace('У Бонні з 2025 року.', 'У NRW з 2025 року.')
+          .replace('Seit 2025 in Bonn.', 'Seit 2025 in NRW.')
+          .replace('Based in Bonn since 2025.', 'Based in NRW since 2025.');
+      }
+    });
+    await original
+      .locator('.footer-col')
+      .first()
+      .locator('p')
+      .evaluate((element) => {
+        element.textContent = element.textContent.replace('. ', '.\n');
+        element.style.whiteSpace = 'pre-line';
+      });
+    await original.locator('.footer-col h4').evaluateAll((headings) => {
+      for (const heading of headings)
+        heading.textContent = heading.textContent
+          .replace('Зона · 100 км', 'Зона · увесь NRW')
+          .replace('Gebiet · 100 km', 'Gebiet · ganz NRW')
+          .replace('Area · 100 km', 'Area · all of NRW');
+    });
     await original.evaluate(
-      (biographies) => {
-        const biography = document.querySelector('.philosophy-bio');
-        biography.textContent = biographies[document.documentElement.lang];
-        biography.style.whiteSpace = 'pre-line';
+      (cities) => {
+        const list = document.querySelector('.footer .mono-list');
+        list.replaceChildren(
+          ...cities[document.documentElement.lang].map((city) => {
+            const item = document.createElement('div');
+            item.textContent = city;
+            return item;
+          }),
+        );
       },
       {
-        de: 'Seit 2025 in Nordrhein-Westfalen.\nÜber 300 abgeschlossene Montagen.\nVier Sprachen, ein Standard.',
-        uk: 'У Північному Рейні-Вестфалії з 2025 року.\nПонад 300 завершених збірок.\nЧотири мови, один стандарт.',
-        en: 'Working in North Rhine-Westphalia since 2025.\nOver 300 completed assemblies.\nFour languages, one standard.',
+        de: [
+          'Köln',
+          'Düsseldorf',
+          'Dortmund',
+          'Essen',
+          'Duisburg',
+          'Bochum',
+          'Wuppertal',
+          'Bielefeld',
+        ],
+        uk: [
+          'Кельн',
+          'Дюссельдорф',
+          'Дортмунд',
+          'Ессен',
+          'Дуйсбург',
+          'Бохум',
+          'Вупперталь',
+          'Білефельд',
+        ],
+        en: [
+          'Cologne',
+          'Düsseldorf',
+          'Dortmund',
+          'Essen',
+          'Duisburg',
+          'Bochum',
+          'Wuppertal',
+          'Bielefeld',
+        ],
       },
     );
-    // Approved Ukrainian services copy and emphasis.
-    if (language === 'UK') {
-      await original.evaluate(() => {
-        const lead = document.createElement('strong');
-        lead.textContent = 'Три напрями, один стандарт.';
-        const summary = document.createElement('span');
-        summary.className = 'services-summary';
-        summary.textContent = 'Від окремого столика до повністю вбудованої кухні.';
-        const closing = document.createElement('strong');
-        closing.textContent = 'Чисто. Вчасно. З письмовою гарантією.';
-        document
-          .querySelector('#leistungen .section-head > .desc')
-          .replaceChildren(
-            lead,
-            document.createElement('br'),
-            summary,
-            document.createElement('br'),
-            closing,
-          );
-      });
-      await expect(page.locator('#leistungen .section-head > .desc strong')).toHaveCount(2);
-      await expect(page.locator('#leistungen .section-head > .desc br')).toHaveCount(2);
-    }
-    await original.addStyleTag({
-      content:
-        '\n/* Give the Ukrainian service summary its natural width on desktop. */\n@media (min-width: 1280px) {\n  html[lang="uk"] #leistungen .section-head {\n    grid-template-columns: minmax(0, 1fr) max-content;\n  }\n  html[lang="uk"] #leistungen .section-head > .desc { max-width: none; }\n  html[lang="uk"] #leistungen .services-summary { white-space: nowrap; }\n}\n',
+    await original.locator('.footer-mega').evaluate((element) => element.remove());
+    await original.locator('.footer-bottom span').evaluateAll((spans) => {
+      for (const span of spans)
+        span.textContent = span.textContent
+          .replace('© 2026 Möbel Montage Bonn', '© 2026 Möbel Montage NRW')
+          .replace('Made in Bonn ·', 'Made in NRW ·')
+          .replace('Зроблено в Бонні ·', 'Зроблено в NRW ·');
     });
-    // German services use the same three-line emphasis as Ukrainian.
-    if (language === 'DE') {
-      await original.evaluate(() => {
-        const lead = document.createElement('strong');
-        lead.textContent = 'Drei Disziplinen, ein Standard.';
-        const summary = document.createElement('span');
-        summary.className = 'services-summary';
-        summary.textContent = 'Vom einzelnen Beistelltisch bis zur kompletten Einbauküche.';
-        const closing = document.createElement('strong');
-        closing.textContent = 'Sauber. Pünktlich. Schriftlich garantiert.';
-        document
-          .querySelector('#leistungen .section-head > .desc')
-          .replaceChildren(
-            lead,
-            document.createElement('br'),
-            summary,
-            document.createElement('br'),
-            closing,
-          );
-      });
-      await expect(page.locator('#leistungen .section-head > .desc strong')).toHaveCount(2);
-      await expect(page.locator('#leistungen .section-head > .desc br')).toHaveCount(2);
-    }
-    await original.addStyleTag({
-      content:
-        '\n@media (min-width: 1280px) {\n  html[lang="de"] #leistungen .section-head { grid-template-columns: minmax(0, 1fr) max-content; }\n  html[lang="de"] #leistungen .section-head > .desc { max-width: none; }\n  html[lang="de"] #leistungen .services-summary { white-space: nowrap; }\n}\n',
-    });
-    await original.addStyleTag({
-      content:
-        '.philosophy-pull { color: var(--ink); } .philosophy-pull em { color: rgb(255, 140, 0); }',
-    });
+    await original.locator('#faq .faq-a').evaluateAll(
+      (answers, replacements) => {
+        for (const answer of answers)
+          for (const [before, after] of replacements)
+            answer.textContent = answer.textContent.replace(before, after);
+      },
+      [
+        [
+          'Zahlung per Überweisung mit 14 Tagen Ziel.',
+          'Zahlung per Banküberweisung, bar oder per PayPal innerhalb von 14 Tagen nach Ausführung der Arbeiten.',
+        ],
+        [
+          'Оплата переказом з відстрочкою 14 днів.',
+          'Оплата банківським переказом, готівкою або через PayPal протягом 14 днів після виконання робіт.',
+        ],
+        [
+          'Payment by bank transfer within 14 days.',
+          'Payment by bank transfer, cash or PayPal within 14 days after completion of the work.',
+        ],
+      ],
+    );
     const overflow = (tab) =>
       tab.evaluate(() => ({
         width: innerWidth,
@@ -217,8 +252,6 @@ for (const language of ['DE', 'UK']) {
       '#leistungen',
       '#archiv',
       '#ablauf',
-      '#referenzen',
-      '.testimonial',
       '#faq',
       '#kontakt',
       '.footer',

@@ -12,7 +12,7 @@ test('layout, graphics, translations, persistence and scroll controls', async ({
     route.fulfill({ body: '', contentType: 'text/css' }),
   );
   await page.goto('/');
-  await expect(page.locator('main > section')).toHaveCount(10);
+  await expect(page.locator('main > section')).toHaveCount(9);
   await expect(page.locator('.hero-img')).toBeVisible();
   expect(
     await page.locator('.hero-img').evaluate((img) => img.complete && img.naturalWidth > 0),
@@ -92,11 +92,8 @@ test('contact fields, local file selection, demo feedback and direct links', asy
     'href',
     'https://wa.me/4917621855005',
   );
+  await expect(page.locator('.contact-direct a')).toHaveCount(2);
   await expect(page.locator('.contact-direct a').nth(1)).toHaveAttribute(
-    'href',
-    'tel:+4917621855005',
-  );
-  await expect(page.locator('.contact-direct a').nth(2)).toHaveAttribute(
     'href',
     'mailto:fatuglyaces@gmail.com',
   );
